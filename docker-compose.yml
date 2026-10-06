@@ -1,0 +1,57 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: proxy-site-caddy
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp' # HTTP/3
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./logs/caddy:/var/log/caddy
+    networks:
+      - proxy-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+  bot:
+    build:
+      context: ./clean_service_tg_bot
+      dockerfile: Dockerfile
+    container_name: proxy-site-bot
+    restart: unless-stopped
+    env_file:
+      - ./clean_service_tg_bot/.env
+    expose:
+      - '8080'
+    networks:
+      - proxy-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+networks:
+  proxy-net:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

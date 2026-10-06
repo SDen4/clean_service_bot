@@ -1,36 +1,9 @@
-import 'dotenv/config';
-import TgBotApi from 'node-telegram-bot-api';
+import 'dotenv/config'; // должен быть первым
+import { app } from './server.js';
 
-import { commands } from './src/commands/index.js';
+const PORT = process.env.PORT || 8080;
 
-const token = process.env.TOKEN;
-const statChatId = process.env.STAT_CHAT_ID;
-
-const bot = new TgBotApi(token, { polling: true });
-bot.setMyCommands(commands);
-
-// messages
-bot.on('message', async (msg) => {
-  const chatId = msg?.chat?.id;
-  const text = msg?.text;
-
-  if (chatId) await bot.sendMessage(chatId, `Test message: ${text}`);
+app.listen(PORT, () => {
+  console.log(`HTTP server listening on ${PORT}`);
+  console.log('Telegram bot is running (polling)');
 });
-
-// commands
-bot.on('callback_query', async (msg) => {
-  const chatId = msg?.message?.chat?.id;
-  const text = msg?.data;
-
-  if (chatId) {
-    await bot.sendMessage(chatId, `Test callback_query: ${text}`);
-  }
-});
-
-bot.on(
-  'pre_checkout_query',
-  async (query) =>
-    await bot
-      .answerPreCheckoutQuery(String(query.id), true)
-      .catch((error) => bot.sendMessage(statChatId, `Error: ${error}`)),
-);
