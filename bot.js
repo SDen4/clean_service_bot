@@ -12,34 +12,18 @@ bot.setMyCommands(commands);
 
 // messages
 bot.on('message', async (msg) => {
-  const chatId = msg?.chat?.id;
+  // const chatId = msg?.chat?.id;
   const text = msg?.text;
 
   if (!text) return;
-
-  console.log('1: ', msg);
-
-  if (chatId) {
-    await bot.sendMessage(STAT_CHAT_ID, `Test message: ${text}`, {
-      message_thread_id: MESSAGE_THREAD_ID,
-    });
-  }
 });
 
 // commands
 bot.on('callback_query', async (msg) => {
-  const chatId = msg?.message?.chat?.id;
+  // const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
 
   if (!text) return;
-
-  console.log('2: ', msg);
-
-  if (chatId) {
-    await bot.sendMessage(STAT_CHAT_ID, `Test callback_query: ${text}`, {
-      message_thread_id: MESSAGE_THREAD_ID,
-    });
-  }
 });
 
 bot.on(

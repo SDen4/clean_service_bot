@@ -13,9 +13,10 @@ app.post('/send', async (req, res) => {
     await bot.sendMessage(STAT_CHAT_ID, text, {
       message_thread_id: MESSAGE_THREAD_ID,
     });
+
     res.json({ ok: true });
-  } catch (e) {
-    res.status(500).json({ ok: false, error: e.message });
+  } catch (error) {
+    res.status(500).json({ ok: false, error: error.message });
   }
 });
 
