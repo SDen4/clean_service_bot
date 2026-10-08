@@ -14,6 +14,8 @@ bot.on('message', async (msg) => {
   const chatId = msg?.chat?.id;
   const text = msg?.text;
 
+  console.log('1: ', msg);
+
   if (chatId) {
     await bot.sendMessage(chatId, `Test message: ${text}`);
   }
@@ -23,6 +25,8 @@ bot.on('message', async (msg) => {
 bot.on('callback_query', async (msg) => {
   const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
+
+  console.log('2: ', msg);
 
   if (chatId) {
     await bot.sendMessage(chatId, `Test callback_query: ${text}`);
