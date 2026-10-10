@@ -9,9 +9,9 @@ const STAT_CHAT_ID = process.env.STAT_CHAT_ID;
 const MESSAGE_THREAD_ID = process.env.MESSAGE_THREAD_ID;
 
 app.post('/send', async (req, res) => {
-  const { name, email, phone, message } = req.body;
+  const { name, email, phone, message, checkbox } = req.body;
 
-  const text = createMessage({ name, email, phone, message });
+  const text = createMessage({ name, email, phone, message, checkbox });
 
   try {
     await bot.sendMessage(STAT_CHAT_ID, text, {
