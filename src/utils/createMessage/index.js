@@ -4,7 +4,7 @@ export const createMessage = ({ name, email, phone, message, checkbox }) => {
 ФИО: ${name}
 Email: ${email}
 Tel: ${phone}
-Согласие ПД: ${checkbox === 'on' ? 'ДА' : 'НЕТ'}
+Согласие ПД: ${checkbox ? 'ДА' : 'НЕТ'}
 ==========
 Сообщение: ${message}
 `;
