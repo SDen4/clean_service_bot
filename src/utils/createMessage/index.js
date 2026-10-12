@@ -1,6 +1,13 @@
 /** Генерация сообщения в чат */
-export const createMessage = ({ name, email, phone, message, checkbox }) => {
-  return `
+export const createMessage = ({
+  name,
+  email,
+  phone,
+  message,
+  checkbox,
+  href,
+}) => {
+  const text = `
 ФИО: ${name}
 Email: ${email}
 Tel: ${phone}
@@ -8,4 +15,16 @@ Tel: ${phone}
 ==========
 Сообщение: ${message}
 `;
+
+  if (href) {
+    return (
+      text +
+      `
+==========
+(ссылка на товар)[${href}] 
+`
+    );
+  }
+
+  return text;
 };
