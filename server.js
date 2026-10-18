@@ -1,6 +1,7 @@
 import express from 'express';
 import { bot } from './bot.js';
 import { createMessage } from './src/utils/createMessage/index.js';
+import { createCallBackMessage } from './src/utils/createCallBackMessage/index.js';
 
 const app = express();
 app.use(express.json());
@@ -12,6 +13,29 @@ app.post('/send', async (req, res) => {
   const { name, email, phone, message, checkbox, href } = req.body;
 
   const text = createMessage({ name, email, phone, message, checkbox, href });
+
+  try {
+    await bot.sendMessage(STAT_CHAT_ID, text, {
+      message_thread_id: MESSAGE_THREAD_ID,
+      parse_mode: 'Markdown',
+      disable_web_page_preview: true,
+    });
+
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ ok: false, error: error.message });
+  }
+});
+
+app.post('/call-back', async (req, res) => {
+  const { name, phone, checkbox, checkboxAgreement } = req.body;
+
+  const text = createCallBackMessage({
+    name,
+    phone,
+    checkbox,
+    checkboxAgreement,
+  });
 
   try {
     await bot.sendMessage(STAT_CHAT_ID, text, {
