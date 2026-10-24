@@ -17,7 +17,7 @@ app.post('/send', async (req, res) => {
   try {
     await bot.sendMessage(STAT_CHAT_ID, text, {
       message_thread_id: MESSAGE_THREAD_ID,
-      parse_mode: 'Markdown',
+      parse_mode: 'MarkdownV2',
       disable_web_page_preview: true,
     });
 
@@ -40,7 +40,7 @@ app.post('/call-back', async (req, res) => {
   try {
     await bot.sendMessage(STAT_CHAT_ID, text, {
       message_thread_id: MESSAGE_THREAD_ID,
-      parse_mode: 'Markdown',
+      parse_mode: 'MarkdownV2',
       disable_web_page_preview: true,
     });
 
