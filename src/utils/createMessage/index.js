@@ -12,7 +12,7 @@ export const createMessage = ({
   const text = `
 ФИО: ${name}
 Email: ${email}
-Tel: ${phone}
+Tel: ${masking(phone)}
 Согласие ПД: ${checkbox ? 'ДА' : 'НЕТ'}
 ====================
 Сообщение: ${masking(message)}
