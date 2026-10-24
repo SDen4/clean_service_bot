@@ -11,8 +11,8 @@ export const createMessage = ({
 }) => {
   const text = `
 ФИО: ${name}
-Email: ${masking(email)}
-Tel: ${masking(phone)}
+Email: ${email}
+Tel: ${phone}
 Согласие ПД: ${checkbox ? 'ДА' : 'НЕТ'}
 ====================
 Сообщение: ${masking(message)}

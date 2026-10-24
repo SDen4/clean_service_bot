@@ -1,5 +1,3 @@
-import { masking } from '../masking/index.js';
-
 /** Генерация сообщения в чат (Перезвонить мне) */
 export const createCallBackMessage = ({
   name,
@@ -8,10 +6,10 @@ export const createCallBackMessage = ({
   checkboxAgreement,
 }) => {
   const text = `
-Пользователь просит перезвонить ему
+Пользователь просит перезвонить
 ====================
 ФИО: ${name}
-Tel: ${masking(phone)}
+Tel: ${phone}
 Согласие ПД: ${checkbox ? 'ДА' : 'НЕТ'}
 Согласие Перезвонить: ${checkboxAgreement ? 'ДА' : 'НЕТ'}
 `;
