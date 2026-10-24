@@ -11,7 +11,7 @@ export const createMessage = ({
 }) => {
   const text = `
 ФИО: ${name}
-Email: ${email}
+Email: ${masking(email)}
 Tel: ${masking(phone)}
 Согласие ПД: ${checkbox ? 'ДА' : 'НЕТ'}
 ====================
