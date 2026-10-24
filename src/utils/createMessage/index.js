@@ -1,5 +1,3 @@
-import { masking } from '../masking/index.js';
-
 /** Генерация сообщения в чат (Обратная связь) */
 export const createMessage = ({
   name,
@@ -10,12 +8,12 @@ export const createMessage = ({
   href,
 }) => {
   const text = `
-ФИО: ${name}
-Email: ${email}
-Tel: ${phone}
-Согласие ПД: ${checkbox ? 'ДА' : 'НЕТ'}
+<b>ФИО:</b> ${name}
+<b>Email:</b> ${email}
+<b>Tel:</b> ${phone}
+<b>Согласие ПД:</b> ${checkbox ? 'ДА' : 'НЕТ'}
 ====================
-Сообщение: ${masking(message)}
+<b>Сообщение:</b> ${message}
 `;
 
   if (href) {
@@ -23,7 +21,7 @@ Tel: ${phone}
       text +
       `
 ====================
-[ссылка на товар](${href})`
+<a href="${href}">ссылка на товар</a>`
     );
   }
 

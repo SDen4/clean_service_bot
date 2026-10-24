@@ -8,10 +8,10 @@ export const createCallBackMessage = ({
   const text = `
 Пользователь просит перезвонить
 ====================
-ФИО: ${name}
-Tel: ${phone}
-Согласие ПД: ${checkbox ? 'ДА' : 'НЕТ'}
-Согласие Перезвонить: ${checkboxAgreement ? 'ДА' : 'НЕТ'}
+<b>ФИО:</b> ${name}
+<b>Tel:</b> ${phone}
+<b>Согласие ПД:</b> ${checkbox ? 'ДА' : 'НЕТ'}
+<b>Согласие Перезвонить:</b> ${checkboxAgreement ? 'ДА' : 'НЕТ'}
 `;
 
   return text;
